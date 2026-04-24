@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-void fastIO()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-}
+
 struct Patient
 {
     int specialization;
@@ -44,10 +39,10 @@ void PrintAllPatients(int count[])
             continue;
         else
         {
-            cout << "There are " << count[i] << " patients in specialization " << i << endl;
+            cout << "There are " << count[i] << " patients in specialization " << i << "\n";
             for (int j = 0; j <= count[i]; j++)
             {
-                cout << PatientsData[i][j] << endl;
+                cout << PatientsData[i][j] << "\n";
             }
         }
     }
@@ -64,10 +59,10 @@ string GetName(string Name)
 void GetNextPatients(int HisSpec, int count[])
 {
     if (count[HisSpec] == 0)
-        cout << "No Patients in specialization " << HisSpec << endl;
+        cout << "No Patients in specialization " << HisSpec << "\n";
     else
     {
-        cout << "Mr " << GetName(PatientsData[HisSpec][1]) << " Please go with the Dr" << endl;
+        cout << "Mr " << GetName(PatientsData[HisSpec][1]) << " Please go with the Dr\n";
         for (int j = 1; j < count[HisSpec]; j++)
         {
             PatientsData[HisSpec][j] = PatientsData[HisSpec][j + 1];
@@ -84,7 +79,7 @@ void PrintOnePatient(string TheName, int count[])
         {
             if (GetName(PatientsData[i][j]) == TheName)
             {
-                cout << PatientsData[i][j] << endl;
+                cout << PatientsData[i][j] << "\n";
                 break;
             }
         }
@@ -93,21 +88,17 @@ void PrintOnePatient(string TheName, int count[])
 
 int main()
 {
-    fastIO();
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int choice;
     Patient ThePatient;
     int count[21] = {};
     while (true)
     {
-        cout << "Enter Your Choice:" << endl
-             << "1) Add New Patient" << endl
-             << "2) Print All Patients" << endl
-             << "3) Get Next Patient" << endl
-             << "4) Print Specific Patients" << endl
-             << "5) Exit" << endl;
+        cout << "Enter Your Choice: \n"
+             << "1) Add New Patient\n"
+             << "2) Print All Patients\n"
+             << "3) Get Next Patient\n"
+             << "4) Print Specific Patients\n"
+             << "5) Exit\n";
 
         while (true)
         {
@@ -115,12 +106,12 @@ int main()
             if (choice <= 5 and choice >= 1)
                 break;
             else
-                cout << "Enter Correct Choice!: " << endl;
+                cout << "Enter Correct Choice!: \n";
         }
 
         if (choice == 1)
         {
-            cout << "Enter specialization , name and his statis:  " << endl;
+            cout << "Enter specialization , name and his statis:  \n";
             while (true)
             {
                 cin >> ThePatient.specialization >> ThePatient.name >> ThePatient.statis;
@@ -132,28 +123,28 @@ int main()
                 {
                     if ((ThePatient.specialization > 20 or ThePatient.specialization < 1) and (ThePatient.statis < 0 or ThePatient.statis > 1))
                     {
-                        cout << "Status is out of the range [1,0] and Specialization is out of the range [1,20]" << endl
-                             << "Please enter correct specialization and correct status:  " << endl;
+                        cout << "Status is out of the range [1,0] and Specialization is out of the range [1,20]\n"
+                             << "Please enter correct specialization and correct status:  \n";
                     }
                     else
                     {
                         if (ThePatient.statis < 0 or ThePatient.statis > 1)
                         {
-                            cout << "Status is out of the range [1,0]!" << endl
-                                 << "Please enter correct inputs:  " << endl;
+                            cout << "Status is out of the range [1,0]!\n"
+                                 << "Please enter correct inputs:  \n";
                         }
                         else
                         {
-                            cout << "Specialization is out of the range [1,20]!" << endl
-                                 << "Please enter correct inputs:  " << endl;
+                            cout << "Specialization is out of the range [1,20]!\n"
+                                 << "Please enter correct inputs:  \n";
                         }
                     }
                 }
             }
             if (!AddPatient(ThePatient.specialization, ThePatient.name, ThePatient.statis, count))
             {
-                cout << "This Specialization is full!!" << endl
-                     << "Please enter another Specialization: " << endl
+                cout << "This Specialization is full!!\n"
+                     << "Please enter another Specialization: \n"
                      << endl;
             }
         }
@@ -163,14 +154,14 @@ int main()
         else if (choice == 3)
         {
             int spec;
-            cout << "Enter specialization: " << endl;
+            cout << "Enter specialization: \n";
             while (true)
             {
                 cin >> spec;
                 if (spec >= 1 and spec <= 20)
                     break;
                 else
-                    cout << "Enter correct specialization to get the next patient: " << endl;
+                    cout << "Enter correct specialization to get the next patient: \n";
             }
             GetNextPatients(spec, count);
         }
@@ -178,7 +169,7 @@ int main()
         else if (choice == 4)
         {
             string PatientName;
-            cout << "Enter patient name: " << endl;
+            cout << "Enter patient name: \n";
             cin >> PatientName;
             PrintOnePatient(PatientName, count);
         }
